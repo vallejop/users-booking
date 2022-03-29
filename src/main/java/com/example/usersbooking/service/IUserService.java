@@ -8,6 +8,6 @@ public interface IUserService {
     UserDto getById(String id);
     UserDto updateSuscription(UserDto user,String id);
     UserDto create(UserDto userDto);
-    User delete(UserDto userDto, String id);
+    User delete(String id);
 
 }

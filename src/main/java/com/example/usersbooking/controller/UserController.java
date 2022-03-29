@@ -79,7 +79,7 @@ public class UserController {
             @ApiResponse(code = 500, message = "Internal server error"),
             @ApiResponse(code = 503, message = "Service unavailable or not responding") })
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@RequestBody UserDto userDto, @PathVariable String id){
-        return ResponseEntity.status(HttpStatus.OK).body(_userService.delete(userDto, id));
+    public ResponseEntity<User> deleteUser(@PathVariable String id){
+        return ResponseEntity.status(HttpStatus.OK).body(_userService.delete(id));
     }
 }

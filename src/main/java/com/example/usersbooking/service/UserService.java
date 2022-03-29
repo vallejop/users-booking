@@ -80,16 +80,10 @@ public class UserService implements  IUserService{
     }
 
     @Override
-    public User delete(UserDto user, String id) {
+    public User delete(String id) {
         return _repository.findById(id)
                 .map(u->{
-                    u.setName(user.getName());
-                    u.setActive(user.getActive());
-                    u.setAge(user.getAge());
-                    u.setEmail(user.getEmail());
-                    u.setPhone(user.getPhone());
-                    u.setProfession(user.getProfession());
-                    u.setUntil(user.getUntil());
+                    _repository.delete(u);
                     return u;
                 }).orElseGet(()->{
                     return null;
