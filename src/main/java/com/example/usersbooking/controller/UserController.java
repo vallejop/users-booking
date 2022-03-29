@@ -1,6 +1,7 @@
 package com.example.usersbooking.controller;
 
 import com.example.usersbooking.dto.UserDto;
+import com.example.usersbooking.model.User;
 import com.example.usersbooking.service.IUserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -54,5 +55,31 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> UpdateUser(@RequestBody UserDto user,@PathVariable String id){
         return ResponseEntity.status(HttpStatus.OK).body(_userService.updateSuscription(user,id));
+    }
+
+    @ApiOperation("Create user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success in process"),
+            @ApiResponse(code = 201, message = "Created content"),
+            @ApiResponse(code = 400, message = "Bad parameter request"),
+            @ApiResponse(code = 404, message = "URL Request not found"),
+            @ApiResponse(code = 500, message = "Internal server error"),
+            @ApiResponse(code = 503, message = "Service unavailable or not responding") })
+    @PostMapping()
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+        return ResponseEntity.status(HttpStatus.OK).body(_userService.create(userDto));
+    }
+
+    @ApiOperation("Delete user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success in process"),
+            @ApiResponse(code = 201, message = "Created content"),
+            @ApiResponse(code = 400, message = "Bad parameter request"),
+            @ApiResponse(code = 404, message = "URL Request not found"),
+            @ApiResponse(code = 500, message = "Internal server error"),
+            @ApiResponse(code = 503, message = "Service unavailable or not responding") })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUser(@RequestBody UserDto userDto, @PathVariable String id){
+        return ResponseEntity.status(HttpStatus.OK).body(_userService.delete(userDto, id));
     }
 }

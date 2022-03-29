@@ -64,4 +64,35 @@ public class UserService implements  IUserService{
 
         return user;
     }
+
+    @Override
+    public UserDto create(UserDto user) {
+
+        User u = new User(user.getName(),
+                user.getActive(),
+                user.getUntil(),
+                user.getAge(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getProfession());
+        _repository.save(u);
+        return user;
+    }
+
+    @Override
+    public User delete(UserDto user, String id) {
+        return _repository.findById(id)
+                .map(u->{
+                    u.setName(user.getName());
+                    u.setActive(user.getActive());
+                    u.setAge(user.getAge());
+                    u.setEmail(user.getEmail());
+                    u.setPhone(user.getPhone());
+                    u.setProfession(user.getProfession());
+                    u.setUntil(user.getUntil());
+                    return u;
+                }).orElseGet(()->{
+                    return null;
+                });
+    }
 }
