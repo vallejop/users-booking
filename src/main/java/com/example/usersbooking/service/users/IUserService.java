@@ -1,4 +1,4 @@
-package com.example.usersbooking.service;
+package com.example.usersbooking.service.users;
 
 import com.example.usersbooking.dto.UserDto;
 import com.example.usersbooking.model.User;

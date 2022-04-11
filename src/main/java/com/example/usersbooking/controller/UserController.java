@@ -2,7 +2,7 @@ package com.example.usersbooking.controller;
 
 import com.example.usersbooking.dto.UserDto;
 import com.example.usersbooking.model.User;
-import com.example.usersbooking.service.IUserService;
+import com.example.usersbooking.service.users.IUserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
