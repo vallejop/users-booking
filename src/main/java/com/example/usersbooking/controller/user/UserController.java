@@ -1,6 +1,6 @@
-package com.example.usersbooking.controller;
+package com.example.usersbooking.controller.user;
 
-import com.example.usersbooking.dto.UserDto;
+import com.example.usersbooking.utils.dto.UserDto;
 import com.example.usersbooking.model.User;
 import com.example.usersbooking.service.users.IUserService;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +28,7 @@ public class UserController {
         @ApiResponse(code = 204,message = "No users registered"),
         @ApiResponse(code = 500,message = "Error")
     })
-    @GetMapping("/getAll")
+    @GetMapping("/All")
     public ResponseEntity<Iterable<UserDto>> getAll(){
         Collection<UserDto> users = (Collection<UserDto>)_userService.getAll();
         return ResponseEntity.status(users.isEmpty()?HttpStatus.NO_CONTENT:HttpStatus.OK)

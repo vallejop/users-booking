@@ -1,4 +1,4 @@
-package com.example.usersbooking.controller.security;
+package com.example.usersbooking.security;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 

@@ -1,4 +1,4 @@
-package com.example.usersbooking.dto;
+package com.example.usersbooking.utils.dto;
 
 import java.util.Date;
 

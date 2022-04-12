@@ -1,4 +1,4 @@
-package com.example.usersbooking.controller.auth;
+package com.example.usersbooking.utils.dto;
 
 public class AuthenticationRequest {
 

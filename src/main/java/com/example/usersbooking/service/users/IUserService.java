@@ -1,6 +1,6 @@
 package com.example.usersbooking.service.users;
 
-import com.example.usersbooking.dto.UserDto;
+import com.example.usersbooking.utils.dto.UserDto;
 import com.example.usersbooking.model.User;
 
 public interface IUserService {
