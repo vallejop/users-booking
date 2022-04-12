@@ -13,4 +13,16 @@ public class ServerErrorResponseDto {
         this.errorCode = errorCode;
         this.httpStatus = httpStatus.value();
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public ErrorCode getErrorCode() {
+        return errorCode;
+    }
+
+    public int getHttpStatus() {
+        return httpStatus;
+    }
 }

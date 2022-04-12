@@ -19,14 +19,12 @@ public class RestControllerErrorHandler {
 
     @ExceptionHandler( MissingServletRequestPartException.class )
     private ResponseEntity<String> handleMissingServletRequestPart( MissingServletRequestPartException exception )
-
     {
         return new ResponseEntity<>( exception.getCause().getMessage(), HttpStatus.BAD_REQUEST );
     }
 
     @ExceptionHandler( InternalServerErrorException.class )
     private ResponseEntity<ServerErrorResponseDto> handleRuntimeException(InternalServerErrorException exception )
-
     {
         return new ResponseEntity<>( exception.getServerErrorResponseDto(), exception.getHttpStatus() );
     }

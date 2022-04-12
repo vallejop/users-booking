@@ -1,6 +1,6 @@
 package com.example.usersbooking.controller.auth;
 
-import com.example.usersbooking.service.auth.AuthService;
+import com.example.usersbooking.service.auth.IAuthService;
 import com.example.usersbooking.utils.dto.AuthenticationRequest;
 import com.example.usersbooking.utils.dto.AuthenticationResponse;
 import com.example.usersbooking.utils.exceptions.InvalidCredentialsException;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private AuthService service;
+    private IAuthService service;
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request){
