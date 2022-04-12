@@ -32,10 +32,11 @@ public class AuthService implements  IAuthService {
     @Override
     public String login(String email, String password){
         Operator user = this.findByEmail(email);
-        if(BCrypt.checkpw(password,user.getPasswordHash())){
-            return jwtGenerate.generateToken(user);
+        if(user !=null) {
+            if (BCrypt.checkpw(password, user.getPasswordHash())) {
+                return jwtGenerate.generateToken(user);
+            }
         }
-
         return EMPTY_STRING;
     }
 

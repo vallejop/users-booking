@@ -22,7 +22,7 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request){
         String jwt = service.login(request.getEmail(), request.getPassword());
-        if(jwt.isEmpty()){
+        if(!jwt.isEmpty()){
             return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
         }
         else{
