@@ -5,6 +5,7 @@ import com.example.usersbooking.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +13,13 @@ import java.util.Date;
 
 @Component
 public class JWTGenerate {
-    private static final String KEY = "mvFu@7%FowR7pP6Y";
+    @Value("${app.secret}")
+    private String secret;
 
     public String generateToken(Operator userDetails){
         return Jwts.builder().setSubject(userDetails.getEmail()).setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, KEY).compact();
+                .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 
     public boolean validateToken(String token, Operator user) {
@@ -25,7 +27,7 @@ public class JWTGenerate {
     }
 
     public Claims getClaim(String token) {
-        return Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     public String getEmail(String token) {
