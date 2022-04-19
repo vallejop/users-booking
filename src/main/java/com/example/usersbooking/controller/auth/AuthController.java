@@ -5,6 +5,7 @@ import com.example.usersbooking.service.auth.IAuthService;
 import com.example.usersbooking.utils.dto.AuthenticationRequest;
 import com.example.usersbooking.utils.dto.AuthenticationResponse;
 import com.example.usersbooking.utils.dto.OperatorDto;
+import com.example.usersbooking.utils.dto.OperatorResponseDto;
 import com.example.usersbooking.utils.exceptions.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,11 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    private IAuthService service;
+    private IAuthService authService;
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request){
-        String jwt = service.login(request.getEmail(), request.getPassword());
+        String jwt = authService.login(request.getEmail(), request.getPassword());
         if(!jwt.isEmpty()){
             return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
         }
@@ -35,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Operator> create(@Valid @RequestBody OperatorDto user){
-        return new ResponseEntity<>(service.save(user),HttpStatus.CREATED);
+    public ResponseEntity<OperatorResponseDto> create(@Valid @RequestBody OperatorDto user){
+        return new ResponseEntity<>(authService.save(user),HttpStatus.CREATED);
     }
 }

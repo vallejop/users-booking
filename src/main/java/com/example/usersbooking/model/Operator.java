@@ -27,6 +27,7 @@ public class Operator {
     }
 
     public void Update(OperatorDto operator){
+
         this.setValues(operator);
     }
 
@@ -34,8 +35,14 @@ public class Operator {
         return email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPasswordHash() { return passwordHash; }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     private void setValues(OperatorDto operator){
