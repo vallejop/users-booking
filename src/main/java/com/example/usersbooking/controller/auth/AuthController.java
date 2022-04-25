@@ -1,19 +1,15 @@
 package com.example.usersbooking.controller.auth;
 
-import com.example.usersbooking.model.Operator;
 import com.example.usersbooking.service.auth.IAuthService;
 import com.example.usersbooking.utils.dto.AuthenticationRequest;
 import com.example.usersbooking.utils.dto.AuthenticationResponse;
-import com.example.usersbooking.utils.dto.OperatorDto;
+import com.example.usersbooking.utils.dto.OperatorRequestDto;
 import com.example.usersbooking.utils.dto.OperatorResponseDto;
 import com.example.usersbooking.utils.exceptions.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -36,7 +32,12 @@ public class AuthController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<OperatorResponseDto> create(@Valid @RequestBody OperatorDto user){
-        return new ResponseEntity<>(authService.save(user),HttpStatus.CREATED);
+    public ResponseEntity<OperatorResponseDto> create(@Valid @RequestBody OperatorRequestDto operatorRequest){
+        return new ResponseEntity<>(authService.save(operatorRequest), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<OperatorResponseDto> delete(@Valid @PathVariable String id){
+        return new ResponseEntity<>(authService.deleteById(id), HttpStatus.ACCEPTED);
     }
 }

@@ -5,15 +5,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class OperatorDto {
+public class OperatorRequestDto {
+
     private final String PATTERN = "^[A-Za-z]*$";
 
     @NotEmpty
-    @Pattern(regexp=PATTERN,message = "Name is invalid")
+    @Pattern(regexp=PATTERN,message = "El parametro name no es válido")
     private String name;
 
     @NotEmpty
-    @Pattern(regexp=PATTERN,message = "Lastname is invalid")
+    @Pattern(regexp=PATTERN,message = "El parametro lastName no es válido")
     private String lastName;
 
     @NotEmpty
@@ -21,10 +22,10 @@ public class OperatorDto {
     private String email;
 
     @NotEmpty
-    @Size(min = 8, message = "Password should have at least 8 characters")
+    @Size(min = 8, message = "Password debería contener al menos 8 caracteres")
     private String password;
 
-    public OperatorDto() {}
+    public OperatorRequestDto() {}
 
     public String getName() {
         return name;
