@@ -13,16 +13,21 @@ import java.util.Date;
 
 @Component
 public class JWTGenerate {
+
     @Value("${app.secret}")
     private String secret;
 
     public String generateToken(Operator userDetails){
-        return Jwts.builder().setSubject(userDetails.getEmail()).setIssuedAt(new Date())
+        return Jwts.builder()
+                .setSubject(userDetails.getEmail())
+                .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, secret).compact();
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
     }
 
     public boolean validateToken(String token, Operator user) {
+        boolean test = isTokenExpired(token);
         return user.getEmail().equals(getEmail(token)) && !isTokenExpired(token);
     }
 
@@ -35,6 +40,7 @@ public class JWTGenerate {
     }
 
     public boolean isTokenExpired(String token) {
-        return getClaim(token).getExpiration().before(new Date());
+        return getClaim(token)
+                .getExpiration().before(new Date());
     }
 }
