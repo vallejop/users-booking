@@ -19,10 +19,9 @@ public class UserService implements IUserService {
     public Iterable<UserDto> getAll(){
         List<UserDto> users = new ArrayList<UserDto>();
          _repository.findAll().stream().forEach(u->{
-            users.add(new UserDto(u.getName(),u.getActive(),
-                    u.getUntil(),u.getAge(),u.getEmail(),u.getPhone(),u.getProfession()));
-        });
-
+                     users.add(new UserDto(u.getName(), u.getActive(), u.getUntil(),
+                                u.getAge(), u.getEmail(), u.getPhone(), u.getProfession()));
+                    });
          return users;
     }
 

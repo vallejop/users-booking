@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Document
@@ -19,7 +18,6 @@ public class Operator {
     private String passwordHash;
     private List<Rol> roles;
     private Date createdAt;
-    //private LocalDateTime localDateTime;
     private String currentToken;
 
     public Operator(){}
@@ -28,7 +26,7 @@ public class Operator {
         this.setValues(operator);
         this.createdAt = new Date();
         this.roles = new ArrayList<>(Collections.singleton(Rol.USER));
-        this.currentToken = "";
+        this.currentToken = null;
     }
 
     public void Update(OperatorRequestDto operator){
