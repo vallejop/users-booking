@@ -18,7 +18,9 @@ public class User {
     private Long phone;
     private String profession;
 
-    public User(){}
+    public User(){
+
+    }
 
     public User(String name, Boolean active, Date until, Integer age, String email, Long phone, String profession) {
         this.name = name;
