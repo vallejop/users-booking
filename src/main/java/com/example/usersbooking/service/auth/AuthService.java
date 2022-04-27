@@ -38,21 +38,20 @@ public class AuthService implements  IAuthService {
     public String login(String email, String password){
         Operator operator = this.findByEmail(email);
         if(operator != null) {
-            if ((operator.getCurrentToken() != null && !operator.getCurrentToken().isEmpty())
-                && jwtGenerate.validateToken(operator.getCurrentToken(), operator) ) {
+            if (operator.getCurrentToken() != null && !operator.getCurrentToken().isEmpty() && !operator.getCurrentToken().equals("")) {
+                if (jwtGenerate.validateToken(operator.getCurrentToken(), operator)) {
                     return operator.getCurrentToken();
                 }
             }
             else if (BCrypt.checkpw(password, operator.getPasswordHash())) {
-                return jwtGenerate.generateToken(operator);
-                /*
+                //return jwtGenerate.generateToken(operator);
                 OperatorRequestDto operatorRequest = new OperatorRequestDto();
                 String generatedToken = jwtGenerate.generateToken(operator);
-                this.authRepository.saveGeneratedToken(generatedToken);
+                operator.setCurrentToken(generatedToken);
+                this.authRepository.save(operator);
                 return generatedToken;
-                 */
             }
-
+        }
         return EMPTY_STRING;
     }
 

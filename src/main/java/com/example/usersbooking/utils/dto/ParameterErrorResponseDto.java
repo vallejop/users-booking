@@ -1,7 +1,6 @@
 package com.example.usersbooking.utils.dto;
 
 import com.example.usersbooking.utils.enums.ErrorCode;
-import org.springframework.http.HttpStatus;
 
 public class ParameterErrorResponseDto {
     private String message;

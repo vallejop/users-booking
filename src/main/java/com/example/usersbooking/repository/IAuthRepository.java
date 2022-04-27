@@ -8,6 +8,4 @@ import java.util.Optional;
 @Repository
 public interface IAuthRepository extends MongoRepository<Operator, String> {
     Optional<Operator> findFirstByEmail(String email);
-
-    //Optional<Operator> saveGeneratedToken(String generatedToken);
 }

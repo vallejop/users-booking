@@ -1,12 +1,10 @@
 package com.example.usersbooking.security;
 
 import com.example.usersbooking.model.Operator;
-import com.example.usersbooking.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -27,7 +25,6 @@ public class JWTGenerate {
     }
 
     public boolean validateToken(String token, Operator user) {
-        boolean test = isTokenExpired(token);
         return user.getEmail().equals(getEmail(token)) && !isTokenExpired(token);
     }
 
